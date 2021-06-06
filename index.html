@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #outer {
+            width: 550px;
+            height: 500px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: #bfa;
+        }
+        #outer img {
+            width: 500px;
+            height: 400px;
+            margin: 10px;
+        }
+        #outer button {
+            display: inline-block;
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="outer">
+        <p id="info"></p>
+        <img src="images/1.jpg" alt="食物" class="img">
+
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+    
+    <script>
+        //点击按钮切换图片
+
+        //第一步先获取两个按钮
+        var prev = document.getElementById("prev");
+        var next = document.getElementById("next");
+
+
+        //第二部设置一个索引
+        var index = 0;
+
+        //第三不获取img标签
+        var img = document.getElementsByTagName("img")[0];
+
+        //创建一个数组, 用来保存图片的路径
+        var imgArr = ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg"]
+
+        //来获取p标签
+        var info = document.getElementById("info");
+        info.innerHTML = "一共" + imgArr.length + "张图, 当前第" + (index+1) + "张";
+        
+
+        prev.onclick = function(){
+            index--;
+
+            //防止图片不能显示的情况
+            if(index < 0){
+                index = 4;
+            }
+
+            img.src = imgArr[index];
+
+        info.innerHTML = "一共" + imgArr.length + "张图, 当前第" + (index+1) + "张";
+
+        };
+
+        
+        next.onclick = function(){
+            index++;
+
+             //防止图片不能显示的情况
+             if(index > 4){
+                index = 0;
+            }
+
+            img.src = imgArr[index];
+
+        info.innerHTML = "一共" + imgArr.length + "张图, 当前第" + (index+1) + "张";
+
+        };
+    </script>
+</body>
+</html>
